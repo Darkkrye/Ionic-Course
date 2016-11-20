@@ -21,8 +21,19 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
         // Create the template
         var todoTemplate = '<input type="text" placeholder=" Titre" ng-model="newTodo.title" /> <br /> <textarea placeholder=" Description" ng-model="newTodo.description" rows="5" cols="15"></textarea>'
 
+        $scope.showModal(todoTemplate, "Ajouter une tâche", "Ajouter", function() {
+            // If the user does not give a title
+            if(!$scope.newTodo.title) {
+                e.preventDefault() // Prevent Default
+            } else {
+                $scope.todos.push($scope.newTodo) // Add the todo
+                console.log($scope.todos)
+                $scope.saveAndClose()
+            }
+        })
+
         // Create the popup
-        var myPopup = $ionicPopup.show({
+        /*var myPopup = $ionicPopup.show({
             template: todoTemplate,
             title: "Ajouter une tâche",
             scope: $scope,
@@ -43,7 +54,7 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
                     }
                 }
             ]
-        })
+        })*/
     }
 
     // Edit function
@@ -54,8 +65,18 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
         // Create the template
         var updateTodoTemplate = '<input type="text" placeholder=" Titre" ng-model="editedTodo.title" /> <br /> <textarea placeholder=" Description" ng-model="editedTodo.description" rows="5" cols="15"></textarea>'
 
+        $scope.showModal(updateTodoTemplate, "Modification de " + todo.title, "Modifier", function() {
+            // If the user does not give a title
+            if(!$scope.editedTodo.title) {
+                e.preventDefault() // Prevent Default
+            } else {
+                $scope.todos[$scope.editedTodo-1] = $scope.editedTodo // Update the todo
+                $scope.saveAndClose()
+            }
+        })
+
         // Create the popup
-        var myPopup = $ionicPopup.show({
+        /*var myPopup = $ionicPopup.show({
             template: updateTodoTemplate,
             title: "Modification de " + todo.title,
             scope: $scope,
@@ -78,11 +99,11 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
                                     $scope.todos[i] = $scope.editedTodo
                                 }
                             }*/
-                        }
+                        /*}
                     }
                 }
             ]
-        })
+        })*/
     }
 
     // Delete function
@@ -105,5 +126,22 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
     $scope.saveAndClose = function() {
         LocalStorage.save($scope.todos) // Call the storage service
         $ionicListDelegate.closeOptionButtons() // Close buttons
+    }
+
+    // Function to create a modal window
+    $scope.showModal = function(template, title, buttonTitle, callBack) {
+        var myPopup = $ionicPopup.show({
+            template: template,
+            title: title,
+            scope: $scope,
+            buttons: [
+                { text: 'Annuler' },
+                {
+                    text: '<b>' + buttonTitle + '</b>',
+                    type: 'button-positive',
+                    onTap: callBack
+                }
+            ]
+        })
     }
 })
