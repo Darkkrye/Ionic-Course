@@ -27,7 +27,6 @@ angular.module('starter', ['ionic', 'LocalStorageService'])
                 e.preventDefault() // Prevent Default
             } else {
                 $scope.todos.push($scope.newTodo) // Add the todo
-                console.log($scope.todos)
                 $scope.saveAndClose()
             }
         })
