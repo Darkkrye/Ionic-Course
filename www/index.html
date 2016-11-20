@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title></title>
 
-    <link rel="manifest" href="manifest.json">
+	<link rel="manifest" href="manifest.json">
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
+	<!-- un-comment this code to enable service worker
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js')
+				.then(() => console.log('service worker installed'))
+				.catch(err => console.log('Error', err));
+			}
+	</script>-->
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+	<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+	<link href="css/ionic.app.css" rel="stylesheet">
+	-->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<!-- ionic/angularjs js -->
+	<script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
+	<!-- your app's js -->
+	<script src="js/app.js"></script>
 
-    <!-- Controllers -->
-    <script src="js/Controllers/TodoCtrl.js"></script>
+	<!-- Controllers -->
+	<script src="js/Controllers/TodoCtrl.js"></script>
 
-    <!-- Services -->
-    <script src="js/Services/LocalStorageService.js"></script>
-  </head>
+	<!-- Services -->
+	<script src="js/Services/LocalStorageService.js"></script>
+</head>
 
-  <body ng-app="starter" ng-controller="TodoCtrl">
-    <ion-pane>
-      <!-- Navbar header -->
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">ESGI ToDo</h1>
-      </ion-header-bar>
+<body ng-app="starter" ng-controller="TodoCtrl">
+	<ion-pane>
+		<!-- Navbar header -->
+		<ion-header-bar class="bar-stable">
+			<h1 class="title">ESGI ToDo</h1>
+		</ion-header-bar>
 
-      <!-- Page content -->
-      <ion-content>
+		<!-- Page content -->
+		<ion-content>
 
-        <!-- ToDos list -->
-        <ion-list>
-          <ion-item ng-repeat="todo in todos" class="item-icon-right">
-            <label class="checkbox">
-              <input type="checkbox" ng-click="hasDone(todo.id); $event.stopPropagation();" ng-model="todo.isDone" />
-            </label>
-            <span class="itemTitle">{{ todo.title }}</span>
-            <i class="icon ion-backspace-outline"></i>
+			<!-- ToDos list -->
+			<ion-list>
+				<ion-item ng-repeat="todo in todos" class="item-icon-right">
+					<label class="checkbox">
+						<input type="checkbox" ng-click="hasDone(todo.id); $event.stopPropagation();" ng-model="todo.isDone" />
+					</label>
+					<span class="itemTitle">{{ todo.title }}</span>
+					<i class="icon ion-backspace-outline"></i>
 
-            <!-- Remove button -->
-            <ion-option-button class="button button-assertive" ng-click="deleteTodoById(todo.id)">
-              <ion-icon class="ion-ios-trash-outline"></ion-icon>&nbsp; Supprimer
-            </ion-option-button>
+					<!-- Remove button -->
+					<ion-option-button class="button button-assertive" ng-click="deleteTodoById(todo.id)">
+						<ion-icon class="ion-ios-trash-outline"></ion-icon>&nbsp; Supprimer
+					</ion-option-button>
 
-            <!-- Update button -->
-            <ion-option-button class="button button-energized" ng-click="editTodo(todo)">
-              <ion-icon class="ion-edit"></ion-icon>&nbsp; Modifier
-            </ion-option-button>
-        </ion-item>
+					<!-- Update button -->
+					<ion-option-button class="button button-energized" ng-click="editTodo(todo)">
+						<ion-icon class="ion-edit"></ion-icon>&nbsp; Modifier
+					</ion-option-button>
+				</ion-item>
 
-        </ion-list>
-      </ion-content>
+			</ion-list>
+		</ion-content>
 
-      <!-- Footer -->
-      <ion-footer-bar align-title="left" class="bar-positive">
-        <button class="button pull-right" ng-click="addTodo()"><i class="icon ion-ios-plus-outline"></i></button>
-      </ion-footer-bar>
-    
-    </ion-pane>
-  </body>
+		<!-- Footer -->
+		<ion-footer-bar align-title="left" class="bar-positive">
+			<button class="button pull-right" ng-click="addTodo()"><i class="icon ion-ios-plus-outline"></i></button>
+		</ion-footer-bar>
+
+	</ion-pane>
+</body>
 </html>

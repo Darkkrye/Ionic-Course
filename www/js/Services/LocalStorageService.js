@@ -1,21 +1,21 @@
 var LocalStorageService = angular.module('LocalStorageService', [])
 
 .service("LocalStorage", function() {
-    this.KEY = "SavedTodos"
+	this.KEY = "SavedTodos"
 
-    this.save = function(todos) {
-        localStorage.setItem(this.KEY, JSON.stringify(todos))
-    }
+	this.save = function(todos) {
+		localStorage.setItem(this.KEY, JSON.stringify(todos))
+	}
 
-    this.retrieve = function() {
-        var todos = JSON.parse(localStorage.getItem(this.KEY))
+	this.retrieve = function() {
+		var todos = JSON.parse(localStorage.getItem(this.KEY))
 
-        if (todos == null || todos.length < 1) {
-            return []
-        } else {
-            return todos
-        }
-    }
+		if (todos == null || todos.length < 1) {
+			return []
+		} else {
+			return todos
+		}
+	}
 })
 
 // I don't have found any tuto or information on "How to create a storage service" so I have tried to do one by myself.
